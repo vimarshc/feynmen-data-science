@@ -5,10 +5,7 @@
 # file to edit: dev_nb/02_fully_connected.ipynb
 from exp.nb_01 import *
 from torch import FloatTensor
-def get_data():
-    x_train, y_train,x_test, y_test = get_minst()
-    return map(FloatTensor, (x_train,y_train,x_test,y_test))
-
+def get_data(): return get_minst()
 def normalize(x, m, s): return (x-m)/s
 
 def test_near_zero(a,tol=1e-3): assert a.abs()<tol, f"Near zero: {a}"
@@ -17,3 +14,6 @@ from torch.nn import init
 
 
 def mse(output, targ): return (output.squeeze(-1) - targ).pow(2).mean()
+
+
+from torch import nn
