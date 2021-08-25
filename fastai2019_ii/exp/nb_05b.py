@@ -48,7 +48,10 @@ class Runner():
         self.in_train = False
         cbs = listify(cbs)
         for cbf in listify(cb_funcs):
-            cb = cbf()
+            try:
+                cb = cbf()
+            except:
+                import pdb;pdb.set_trace()
             setattr(self, cb.name, cb)
             cbs.append(cb)
         self.stop,self.cbs = False,[TrainEvalCallback()]+cbs
